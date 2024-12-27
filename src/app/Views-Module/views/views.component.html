@@ -1,0 +1,56 @@
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Request List</h2>
+    
+    <!-- Dropdown to change view -->
+    <div class="mb-3">
+      <label for="viewSelect" class="form-label">Select View</label>
+      <select id="viewSelect" (change)="changeView($event)" [(ngModel)]="currentView" class="form-select">
+        <option *ngFor="let view of views" [value]="view">{{ view }}</option>
+      </select>
+    </div>
+    
+    <!-- Responsive Table -->
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th (click)="fetchRequests(currentView, 'Name', true)">Name</th>
+            <th>Request Type</th>
+            <th (click)="fetchRequests(currentView, 'Price', true)">Price</th>
+            <th (click)="fetchRequests(currentView, 'SKU', true)">SKU</th>
+            <th (click)="fetchRequests(currentView, 'Quantity', true)">Quantity</th>
+            <th>Status</th>
+            <th>Request Status</th>
+            <th (click)="fetchRequests(currentView, 'CreatedOn', true)">Created On</th>
+            <th (click)="fetchRequests(currentView, 'Category', true)">Category</th>
+            <th (click)="fetchRequests(currentView, 'Supplier First Name', true)">Supplier</th>
+            <th (click)="fetchRequests(currentView, 'User First Name', true)">User</th>
+            <th (click)="fetchRequests(currentView, 'Team', true)">Team</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let request of request">
+            <td class="text-primary clickable">
+              <a (click)="viewDetails(request.id)">{{ request.name }}</a>
+            </td>            
+            <td>{{ request.requestType }}</td>
+            <td >{{ request.price | currency }}</td>
+            <td >{{ request.sku }}</td>
+            <td>{{ request.quantity }}</td>
+            <td>
+              <span (click)="fetchRequests(currentView, 'Status', true)" class="badge" [ngClass]="{'badge-success': request.status, 'badge-danger': !request.status}">
+                {{ request.status ? 'Active' : 'Inactive' }}
+              </span>
+            </td>
+            <td>{{ request.requestStatus }}</td>
+            <td>{{ request.createdOn | date:'short' }}</td>
+            <td>{{ request.category }}</td>
+            <td>{{ request.supplier }}</td>
+            <td>{{ request.user }}</td>
+            <td>{{ request.team }} Team</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

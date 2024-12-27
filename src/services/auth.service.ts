@@ -5,6 +5,8 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IManager, IUser } from 'src/interfaces/iuser';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtPayload } from 'src/interfaces/IJWT';
 
 @Injectable({
   providedIn: 'root',
@@ -44,8 +46,16 @@ export class AuthService {
     this.router.navigate(['/signin']);
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token');
+  getToken(): JwtPayload {
+   let token:string =  localStorage.getItem('token') ?? "";
+    const helper = new JwtHelperService(token);
+    const isExpired = helper.isTokenExpired(token);
+    if(isExpired){
+      throw new Error("You need to sign first");
+    }
+    const decodedToken = helper.decodeToken(token);
+    return decodedToken;
+
   }
   getAllManagers(managerTeam:string): Observable<IManager[]> {
     const API: string = `${this.apiUrl}/Managers?managerTeam=${managerTeam}`;

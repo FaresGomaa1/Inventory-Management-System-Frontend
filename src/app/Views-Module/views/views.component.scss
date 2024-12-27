@@ -1,0 +1,100 @@
+// Table styling
+table {
+    thead {
+      background-color: #343a40;
+      color: #fff;
+  
+      th {
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  
+    tbody {
+      tr {
+        &:hover {
+          background-color: #f1f1f1;
+        }
+      }
+  
+      td {
+        vertical-align: middle;
+        text-align: center;
+  
+        .clickable {
+          cursor: pointer;
+          text-decoration: underline;
+        }
+      }
+    }
+  
+    .badge-success {
+      background-color: #28a745;
+    }
+  
+    .badge-danger {
+      background-color: #dc3545;
+    }
+  
+    .btn-info {
+      background-color: #17a2b8;
+      border-color: #17a2b8;
+  
+      i {
+        margin-right: 5px;
+      }
+  
+      &:hover {
+        background-color: #138496;
+        border-color: #138496;
+      }
+    }
+  
+    // Hoverable rows and better button styling
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+  
+    .table-bordered td,
+    .table-bordered th {
+      border: 1px solid #dee2e6;
+    }
+  
+    // General styling for the entire table
+    .table-striped tbody tr:nth-of-type(odd) {
+      background-color: #f9f9f9;
+    }
+  
+    .table th,
+    .table td {
+      padding: 1rem;
+    }
+  
+    // Making the table responsive
+    .table-responsive {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+  }
+  
+  // Responsive dropdown styling
+  .select-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 767px) {
+    .table th, .table td {
+      padding: 0.5rem;
+    }
+    
+    .table-responsive {
+      -webkit-overflow-scrolling: touch;
+      overflow-x: scroll;
+    }
+  
+    .select-wrapper {
+      width: 100%;
+    }
+  }
+  

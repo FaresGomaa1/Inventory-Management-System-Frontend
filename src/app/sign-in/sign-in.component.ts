@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { JwtPayload } from 'src/interfaces/IJWT';
 
 @Component({
   selector: 'app-signin',
@@ -31,17 +32,19 @@ export class SignInComponent {
       this.password = '';
     }
     this.authService
-      .signIn(this.email, this.username, this.password)
-      .subscribe({
-        next: () => {
-          this.isLoading = false;
-          this.router.navigate(['/dashboard']);
-        },
-        error: (error) => {
-          console.log(error);
-          this.isLoading = false; 
-          this.errorMessage = error.error.message;
-        },
-      });
+    .signIn(this.email, this.username, this.password)
+    .subscribe({
+      next: () => {
+        this.isLoading = false;
+        console.log("Here");
+        this.router.navigate(["/views"]);
+      },
+      error: (error) => {
+        console.error("Sign-in error:", error);
+        this.isLoading = false;
+        this.errorMessage = error.error?.message || "An unexpected error occurred. Please try again.";
+      },
+    });
+  
   }
 }
