@@ -1,0 +1,105 @@
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="container mt-4 p-4 shadow-lg rounded bg-light">
+  <h3 class="text-center mb-4 text-primary">Create User</h3>
+  <p *ngFor="let errorMessage of errorMessages" class="text-danger mb-2">
+    <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+  </p>
+  
+  <!-- Manager Checkbox -->
+  <div class="form-check mb-4">
+    <label for="IsManager" class="form-check-label">
+      <input (change)="filterRoles()" id="IsManager" type="checkbox" formControlName="IsManager" [(ngModel)]="IsManager" class="form-check-input" />
+      Is Manager
+    </label>
+  </div>
+
+  <!-- First Name -->
+  <div class="form-group mb-3">
+    <label for="FirstName" class="form-label">First Name:</label>
+    <input id="FirstName" formControlName="FirstName" class="form-control" placeholder="Enter your first name" />
+    <div *ngIf="userForm.get('FirstName')?.invalid && userForm.get('FirstName')?.touched" class="invalid-feedback">
+      First Name is required.
+    </div>
+  </div>
+
+  <!-- Last Name -->
+  <div class="form-group mb-3">
+    <label for="LastName" class="form-label">Last Name:</label>
+    <input id="LastName" formControlName="LastName" class="form-control" placeholder="Enter your last name" />
+    <div *ngIf="userForm.get('LastName')?.invalid && userForm.get('LastName')?.touched" class="invalid-feedback">
+      Last Name is required.
+    </div>
+  </div>
+
+  <!-- Password -->
+  <div class="form-group mb-3">
+    <label for="Password" class="form-label">Password:</label>
+    <input id="Password" type="password" formControlName="Password" class="form-control" placeholder="Enter a secure password" />
+    <div *ngIf="userForm.get('Password')?.invalid && userForm.get('Password')?.touched" class="invalid-feedback">
+      Password must be at least 8 characters long and contain letters, numbers, and special characters.
+    </div>
+  </div>
+
+  <!-- Phone Number -->
+  <div class="form-group mb-3">
+    <label for="PhoneNumber" class="form-label">Phone Number:</label>
+    <input id="PhoneNumber" formControlName="PhoneNumber" class="form-control" placeholder="Enter a valid phone number (e.g., 01012345678)" />
+    <div *ngIf="userForm.get('PhoneNumber')?.invalid && userForm.get('PhoneNumber')?.touched" class="invalid-feedback">
+      Enter a valid phone number starting with 010, 011, or 012.
+    </div>
+  </div>
+
+  <!-- Role -->
+  <div class="form-group mb-3">
+    <label for="Role" class="form-label">Role:</label>
+    <select [(ngModel)]="role" (change)="filterTeams()" id="Role" formControlName="Role" class="form-control">
+      <option value="" disabled>Select a Role</option>
+      <option *ngFor="let role of roles" [value]="role">{{ role }}</option>
+    </select>
+    <div *ngIf="userForm.get('Role')?.invalid && userForm.get('Role')?.touched" class="invalid-feedback">
+      Role is required.
+    </div>
+  </div>
+
+  <!-- User Name -->
+  <div class="form-group mb-3">
+    <label for="UserName" class="form-label">User Name:</label>
+    <input id="UserName" formControlName="UserName" class="form-control" placeholder="Enter your username" />
+    <div *ngIf="userForm.get('UserName')?.invalid && userForm.get('UserName')?.touched" class="invalid-feedback">
+      Username cannot contain spaces.
+    </div>
+  </div>
+
+  <!-- Email -->
+  <div class="form-group mb-3">
+    <label for="Email" class="form-label">Email:</label>
+    <input id="Email" formControlName="Email" class="form-control" placeholder="Enter a valid email" />
+    <div *ngIf="userForm.get('Email')?.invalid && userForm.get('Email')?.touched" class="invalid-feedback">
+      Enter a valid email.
+    </div>
+  </div>
+
+  <!-- Team-->
+  <div class="form-group mb-3">
+    <label for="Team" class="form-label">Team</label>
+    <input type="text" disabled [value]="team + 'Team'" class="form-control" />
+  </div>
+
+  <!-- Manager Selection (conditionally displayed) -->
+  <div *ngIf="!IsManager" class="form-group mb-3">
+    <label for="ManagerId" class="form-label">Manager:</label>
+    <select id="ManagerId" formControlName="ManagerId" class="form-control">
+      <option value="" disabled selected>Select a Manager</option>
+      <option *ngFor="let manager of filteredManagers" [value]="manager.id">
+        {{ manager.firstName }} {{ manager.lastName }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="d-flex justify-content-center mt-4">
+    <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary w-50">
+      <i class="fas fa-user-plus"></i> Create User
+    </button>
+  </div>
+</form>
