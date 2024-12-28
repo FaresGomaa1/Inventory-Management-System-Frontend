@@ -1,1 +1,208 @@
-<p>create-request works!</p>
+<div class="form-container container mt-5">
+  <!-- Error Message Section -->
+  <div class="error-messages p-3 mb-4" *ngIf="errorMessage.length > 0">
+    <div *ngFor="let error of errorMessage" class="error-item d-flex align-items-center">
+      <i class="fas fa-exclamation-circle me-2"></i>
+      <span>{{ error }}</span>
+    </div>
+  </div>
+
+  <!-- Form Section -->
+  <form class="custom-form" (ngSubmit)="handleSubmit()">
+    <!-- Request Type -->
+    <div class="form-group">
+      <label for="requestType">
+        <i class="fas fa-file-alt"></i> Select Request Type
+      </label>
+      <select
+        (change)="fetchProducts()"
+        id="requestType"
+        class="form-select"
+        [(ngModel)]="request.requestType"
+        name="request_Type"
+      >
+        <option value="" disabled selected>Choose a request type</option>
+        <option value="Add Request">Add New Product</option>
+        <option value="Update Request">Update Existing Product</option>
+        <option value="Delete Request">Delete Product</option>
+      </select>
+    </div>
+
+    <!-- Product -->
+    <div
+      class="form-group"
+      *ngIf="
+        request.requestType === 'Delete Request' || request.requestType === 'Update Request'
+      "
+    >
+      <label for="product"> <i class="fas fa-box"></i> Select Product </label>
+      <select
+        id="product"
+        (change)="fetchProduct()"
+        class="form-select"
+        [(ngModel)]="request.sku"
+        name="product"
+        required
+      >
+        <option [value]="" disabled selected>Choose a product</option>
+        <option *ngFor="let product of products" [value]="product.sku">{{product.name}}</option>
+      </select>
+    </div>
+
+    <!-- Conditional Fields -->
+    <div
+      *ngIf="
+        request.requestType === 'Add Request' ||
+        (isNotAddRequest() && request.sku !== undefined)
+      "
+    >
+      <!-- Category -->
+      <div class="form-group">
+        <label for="category">
+          <i class="fas fa-list"></i> Select Category
+        </label>
+        <select
+          id="category"
+          class="form-select"
+          required
+          (change)="generateSKU()"
+          [disabled]="request.requestType === 'Delete Request'"
+          [(ngModel)]="request.categoryId"
+          name="product.requestType"
+        >
+          <option [value]="" disabled selected>Choose a category</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+      </div>
+
+      <!-- Supplier -->
+      <div class="form-group">
+        <label for="supplier">
+          <i class="fas fa-truck"></i> Select Supplier
+        </label>
+        <select
+          id="supplier"
+          class="form-select"
+          required
+          [disabled]="request.requestType === 'Delete Request'"
+          [(ngModel)]="request.supplierId"
+          name="supplierId"
+        >
+          <option [value]="null" disabled selected>Choose a supplier</option>
+          
+          <optgroup *ngFor="let supplier of suppliers" [label]="supplier.firstName + ' ' + supplier.lastName">
+            <option [value]="supplier.id">
+            {{supplier.firstName}} {{supplier.lastName}}
+            </option>
+            <option [value]="null" disabled>
+            Phone: {{supplier.phone}}, Email: {{supplier.email}}
+            </option>
+          </optgroup>
+        </select>
+      </div>      
+
+      <!-- Product Details -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="productName">
+            <i class="fas fa-tag"></i> Product Name
+          </label>
+          <input
+          type="text"
+          id="productName"
+          class="form-control"
+          placeholder="Enter product name"
+          required
+          [disabled]="request.requestType === 'Delete Request'"
+          [(ngModel)]="request.name"
+          name="productName"
+        />         
+        </div>
+
+        <div class="form-group">
+          <label for="productPrice">
+            <i class="fas fa-dollar-sign"></i> Product Price
+          </label>
+          <input
+            type="number"
+            id="productPrice"
+            class="form-control"
+            placeholder="Enter product price"
+            required
+            [disabled]="request.requestType === 'Delete Request'"
+            [(ngModel)]="request.price"
+            name="price"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="sku"> <i class="fas fa-barcode"></i> SKU </label>
+          <input
+            type="text"
+            id="sku"
+            class="form-control"
+            placeholder="Enter SKU"
+            disabled
+            [(ngModel)]="request.sku"
+            name="sku"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="quantity">
+            <i class="fas fa-sort-numeric-up"></i> Quantity
+          </label>
+          <input
+            type="number"
+            id="quantity"
+            class="form-control"
+            placeholder="Enter quantity"
+            required
+            [(ngModel)]="request.quantity"
+            [disabled]="request.requestType === 'Delete Request'"
+            name = "quantity"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="createdOn">
+          <i class="fas fa-calendar-alt"></i> Created On
+        </label>
+        <input
+          type="datetime-local"
+          id="createdOn"
+          class="form-control"
+          [disabled]="true"
+          [value]="currentDate"
+          name="createdOn"
+        />
+      </div> 
+      <div class="form-group">
+        <label for="description">
+          <i class="fas fa-file-alt"></i> Product Description
+        </label>
+        <textarea
+          id="description"
+          class="form-control"
+          rows="4"
+          placeholder="Enter product description"
+          [(ngModel)]="request.description"
+          name="description"
+          required
+          [disabled]="request.requestType === 'Delete Request'"
+        ></textarea>
+      </div>     
+      
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group text-center mt-4">
+      <button type="submit" class="btn btn-primary px-4">
+        <i class="fas fa-paper-plane"></i> Submit
+      </button>
+    </div>
+  </form>
+</div>

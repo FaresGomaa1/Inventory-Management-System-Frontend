@@ -25,7 +25,7 @@ const routes: Routes = [
       import('./Staff-Member-Module/staff-member.module').then(
         (m) => m.StaffMemberModule
       ),
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: 'inventory-manager',

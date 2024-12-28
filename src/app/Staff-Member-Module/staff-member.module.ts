@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 
 import { StaffMemberRoutingModule } from './staff-member-routing.module';
 import { CreateRequestComponent } from './create-request/create-request.component';
+import { FormsModule } from '@angular/forms';
+import { UpdateRequestComponent } from './update-request/update-request.component';
 
 
 @NgModule({
   declarations: [
-    CreateRequestComponent
+    CreateRequestComponent,
+    UpdateRequestComponent
   ],
   imports: [
     CommonModule,
-    StaffMemberRoutingModule
+    StaffMemberRoutingModule,
+    FormsModule
   ]
 })
 export class StaffMemberModule { }
