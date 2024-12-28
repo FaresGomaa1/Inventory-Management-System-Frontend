@@ -1,100 +1,127 @@
-// Table styling
-table {
-    thead {
-      background-color: #343a40;
-      color: #fff;
-  
-      th {
-        font-weight: bold;
-        text-align: center;
-      }
-    }
-  
-    tbody {
-      tr {
-        &:hover {
-          background-color: #f1f1f1;
-        }
-      }
-  
-      td {
-        vertical-align: middle;
-        text-align: center;
-  
-        .clickable {
-          cursor: pointer;
-          text-decoration: underline;
-        }
-      }
-    }
-  
-    .badge-success {
-      background-color: #28a745;
-    }
-  
-    .badge-danger {
-      background-color: #dc3545;
-    }
-  
-    .btn-info {
-      background-color: #17a2b8;
-      border-color: #17a2b8;
-  
-      i {
-        margin-right: 5px;
-      }
-  
-      &:hover {
-        background-color: #138496;
-        border-color: #138496;
-      }
-    }
-  
-    // Hoverable rows and better button styling
-    .table-hover tbody tr:hover {
-      background-color: #f1f1f1;
-    }
-  
-    .table-bordered td,
-    .table-bordered th {
-      border: 1px solid #dee2e6;
-    }
-  
-    // General styling for the entire table
-    .table-striped tbody tr:nth-of-type(odd) {
-      background-color: #f9f9f9;
-    }
-  
-    .table th,
-    .table td {
-      padding: 1rem;
-    }
-  
-    // Making the table responsive
-    .table-responsive {
-      max-width: 100%;
-      overflow-x: auto;
-    }
+/* General Table Styles */
+.table-wrapper {
+  overflow-x: auto;
+  margin: 1rem 0;
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table.custom-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 0.5rem;
+  margin: 0;
+}
+
+.table.custom-table th {
+  background-color: #343a40;
+  color: #ffffff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.table.custom-table td {
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 1rem;
+  vertical-align: middle;
+  font-size: 0.9rem;
+  border-radius: 0.25rem;
+}
+
+/* Hover Effects */
+.table.custom-table tbody tr:hover td {
+  background-color: #e9ecef;
+}
+
+/* Clickable Link Styling */
+.clickable a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.clickable a:hover {
+  color: #0056b3;
+}
+
+/* Badge Styling */
+.badge-success {
+  background-color: #28a745;
+  color: #ffffff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+  color: #ffffff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .table.custom-table th,
+  .table.custom-table td {
+    padding: 0.75rem;
+    font-size: 0.85rem;
   }
-  
-  // Responsive dropdown styling
-  .select-wrapper {
-    max-width: 300px;
-    margin: 0 auto;
+
+  .clickable a {
+    font-size: 0.9rem;
   }
-  
-  @media (max-width: 767px) {
-    .table th, .table td {
-      padding: 0.5rem;
-    }
-    
-    .table-responsive {
-      -webkit-overflow-scrolling: touch;
-      overflow-x: scroll;
-    }
-  
-    .select-wrapper {
-      width: 100%;
-    }
+}
+
+@media (max-width: 768px) {
+  .table-wrapper {
+    border-radius: 0.25rem;
   }
-  
+
+  .table.custom-table th,
+  .table.custom-table td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .badge-success,
+  .badge-danger {
+    font-size: 0.7rem;
+  }
+
+  .clickable a {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .table-wrapper {
+    margin: 0.5rem;
+  }
+
+  .table.custom-table {
+    border-spacing: 0 0.3rem;
+  }
+
+  .table.custom-table th,
+  .table.custom-table td {
+    padding: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .badge-success,
+  .badge-danger {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.65rem;
+  }
+
+  .clickable a {
+    font-size: 0.75rem;
+  }
+}

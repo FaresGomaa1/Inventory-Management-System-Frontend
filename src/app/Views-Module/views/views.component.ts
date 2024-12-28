@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetRequests } from 'src/interfaces/IRequest';
 import { AuthService } from 'src/services/auth.service';
 import { RequestService } from 'src/services/request.service';
@@ -17,7 +18,8 @@ export class ViewsComponent implements OnInit {
 
   constructor(
     private requestService: RequestService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,13 +49,16 @@ export class ViewsComponent implements OnInit {
       }
     );
   }
-  viewDetails(requestId:number){
-
+  viewDetails(requestId: number): void {
+    this.router.navigate([`/staff-member/update-request`, requestId]);
   }
   changeView(event: Event): void {
     const selectedView = (event.target as HTMLSelectElement).value;
     this.currentView = selectedView;
     console.log("Current View", this.currentView);
     this.fetchRequests(this.currentView,"Name",true);
+  }
+  assignRecord(){
+
   }
 }

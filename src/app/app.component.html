@@ -1,1 +1,27 @@
-<router-outlet></router-outlet>
+<div class="app-container">
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/views" routerLinkActive="active">
+                <i class="fas fa-list"></i> All Requests
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/staff-member" routerLinkActive="active">
+                <i class="fas fa-plus"></i> Create Requests
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/products" routerLinkActive="active">
+                <i class="fas fa-box"></i> Products
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>      
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  
