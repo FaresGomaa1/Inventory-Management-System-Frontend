@@ -28,12 +28,12 @@ const routes: Routes = [
     //canActivate: [AuthGuard],
   },
   {
-    path: 'inventory-manager',
+    path: 'inventory-manager/:id',
     loadChildren: () =>
       import('./Inventory-Manager-Module/inventory-manager.module').then(
         (m) => m.InventoryManagerModule
       ),
-    canActivate: [AuthGuard],
+    //canActivate: [AuthGuard],
   },
   {
     path: 'department-manager',

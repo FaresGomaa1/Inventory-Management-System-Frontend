@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetCategoryDTO } from 'src/interfaces/icategory';
 import { GetRequests, UpdateRequest } from 'src/interfaces/IRequest';
 import { GetSupplierDTO } from 'src/interfaces/isupplier';
 import { AuthService } from 'src/services/auth.service';
 import { CategoryService } from 'src/services/category.service';
-import { ProductService } from 'src/services/product.service';
 import { RequestService } from 'src/services/request.service';
 import { SupplierService } from 'src/services/supplier.service';
 
@@ -16,28 +15,45 @@ import { SupplierService } from 'src/services/supplier.service';
 })
 export class UpdateRequestComponent {
   errorMessage: string[] = [];
-  updatedRequest!: UpdateRequest
-  request!:GetRequests;
+  updatedRequest: UpdateRequest = {} as UpdateRequest;
+  request:GetRequests = {} as GetRequests;
   categories: GetCategoryDTO[] = [];
-  supplier!: GetSupplierDTO
+  supplier: GetSupplierDTO = {} as GetSupplierDTO
   currentDate:string = "";
   userId:string = "";
 
   constructor(
     private requestService:RequestService,
     private route: ActivatedRoute,
+    private router: Router,
     private categoryService:CategoryService,
     private supplierService:SupplierService,
     private authService: AuthService
   ){
-    this.userId = this.authService.getToken()['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
+    this.userId = this.authService.getToken()['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+  
   }
   ngOnInit(): void {
     this.fetchRequest();
   }
-  handleSubmit(){
-
+  handleSubmit() {
+    if (!this.updatedRequest) {
+      console.error('Updated request data is missing');
+      return;
+    }
+  
+    this.requestService.updateRequest(this.updatedRequest).subscribe({
+      next: (response) => {
+        this.router.navigate(['/views']);
+      },
+      error: (error) => {
+        console.log('Error updating request:', error.message);
+        // Handle error logic, such as showing an error message
+        alert(`Failed to update the request: ${error.message}`);
+      }
+    });
   }
+  
   fetchRequest(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -61,7 +77,7 @@ export class UpdateRequestComponent {
             categoryId:request.categoryId,
             supplierId: request.supplierId,
             userId: request.userId,
-            requestStatus: request.rquestStatus
+            requestStatus : "Updated"
           };
           console.log("awdawdwadwadwa",this.request)
           const now = new Date(request.createdOn);

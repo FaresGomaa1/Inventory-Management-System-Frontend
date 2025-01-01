@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import {AddRequest, GetRequests, GetRequestsResponse } from 'src/interfaces/IRequest';
+import {AddRequest, GetRequests, GetRequestsResponse, UpdateRequest } from 'src/interfaces/IRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -98,4 +98,19 @@ console.log(requestDetails);
         })
       );
   }
+  updateRequest(updateRequest: UpdateRequest): Observable<{ message: string; requestId: number }> {
+    if (!updateRequest) {
+      throw new Error('Update request details are required');
+    }
+  
+    return this.http
+      .put<{ message: string; requestId: number }>(`${this.apiUrl}/UpdateRequest`, updateRequest)
+      .pipe(
+        catchError((error) => {
+          console.error('Error updating request:', error);
+          return throwError(() => new Error(error.error.message || 'Error updating request'));
+        })
+      );
+  }
+  
 }
