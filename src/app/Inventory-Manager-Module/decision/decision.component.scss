@@ -1,0 +1,117 @@
+.request-details {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    h2, h4 {
+      color: #495057;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .request-info, .product-info, .supplier-info, .decision-section {
+      border-radius: 8px;
+      padding: 15px;
+      background-color: #ffffff;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+  
+    .badge {
+      padding: 0.5em 1em;
+      font-size: 0.9rem;
+      &-success {
+        background-color: #28a745;
+        color: #fff;
+        border-radius: 10px;
+      }
+      &-danger {
+        background-color: #dc3545;
+        color: #fff;
+        border-radius: 10px;
+      }
+    }
+    
+    .form-select, .form-control {
+      border-radius: 0.5rem;
+      border: 1px solid #ced4da;
+      background-color: #f1f1f1;
+      padding: 10px;
+      font-size: 1rem;
+    }
+  
+    .form-select:focus, .form-control:focus {
+      border-color: #80bdff;
+      outline: none;
+    }
+  
+    address {
+      font-style: normal;
+      margin: 0;
+      color: #6c757d;
+      font-size: 0.9rem;
+    }
+  
+    a {
+      color: #007bff;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
+    }
+  
+    .shadow-sm {
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+  
+    .request-info p, .product-info p, .supplier-info p {
+      font-size: 1rem;
+      color: #495057;
+      margin-bottom: 10px;
+    }
+  
+    .request-info p strong, .product-info p strong, .supplier-info p strong {
+      font-weight: 600;
+    }
+  
+    .decision-section select, .decision-section textarea {
+      background-color: #f8f9fa;
+    }
+    
+    .decision-section select:disabled, .decision-section textarea:disabled {
+      background-color: #e9ecef;
+      cursor: not-allowed;
+    }
+  
+    .decision-section .form-label {
+      font-size: 1rem;
+      color: #495057;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+  
+    .decision-section textarea {
+      border: 1px solid #ced4da;
+      border-radius: 0.5rem;
+      padding: 10px;
+      font-size: 1rem;
+      resize: vertical;
+    }
+  
+    .decision-section textarea:focus {
+      border-color: #80bdff;
+    }
+  
+    /* Icons styling */
+    .fas {
+      font-size: 1.2rem;
+      color: #6c757d;
+    }
+  
+    .me-2 {
+      margin-right: 0.5rem;
+    }
+  }
+  

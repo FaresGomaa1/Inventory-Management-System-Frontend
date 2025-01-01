@@ -1,0 +1,49 @@
+<div class="request-details container my-4 p-4 shadow-sm rounded border">
+  <h2 class="mb-4"><i class="fas fa-file-alt me-2"></i>Request Details</h2>
+  
+  <div class="request-info mb-4 p-3 bg-light rounded">
+    <p><strong>Request Status:</strong> {{ this.request.requestStatus }}</p>
+    <p><strong>Owner:</strong> {{ this.request.user }} | <strong>Team:</strong> {{this.request.team}} Team</p>
+    <span class="badge" [ngClass]="this.request.status ? 'badge-success' : 'badge-danger'">
+      {{ this.request.status ? 'Active' : 'Inactive' }}
+    </span>
+  </div>
+  
+  <div class="product-info mb-4 p-3 bg-light rounded">
+    <h4><i class="fas fa-box me-2"></i>Product Details</h4>
+    <p><strong>Name:</strong> {{ this.request.name }}</p>
+    <p><strong>Price:</strong> {{ this.request.price | currency }}</p>
+    <p><strong>Category:</strong> {{ category() }}</p>
+    <p><strong>SKU:</strong> {{ this.request.sku }}</p>
+    <p><strong>Quantity:</strong> {{ this.request.quantity }}</p>
+    <p><strong>Description:</strong> {{ this.request.description }}</p>
+    <p><strong>Created On:</strong> {{ currentDate }}</p>
+  </div>
+  
+  <div class="supplier-info mb-4 p-3 bg-light rounded">
+    <h4><i class="fas fa-user me-2"></i>Supplier Information</h4>
+    <p><strong>Full Name:</strong> {{ this.supplier.firstName }} {{ this.supplier.lastName }}</p>
+    <p><strong>Email:</strong> 
+      <a href="mailto:{{ this.supplier.email }}">{{ this.supplier.email }}</a>
+    </p>
+    <p><strong>Phone:</strong> 
+      <a href="tel:{{ this.supplier.phone }}">{{ this.supplier.phone }}</a>
+    </p>
+    <address>
+      <strong>Address:</strong> {{ this.supplier.address }}
+    </address>
+  </div>
+  
+  <div class="decision-section p-3 bg-light rounded">
+    <h4><i class="fas fa-gavel me-2"></i>Decision</h4>
+    <label for="decision-select" class="form-label">Decision</label>
+    <select id="decision-select" class="form-select mb-3" [disabled]="this.request.userId !== this.userId">
+      <option value="">Approve</option>
+      <option value="">Reject with Update</option>
+      <option value="">Reject and Close</option>
+    </select>
+    
+    <label for="comment-textarea" class="form-label">Comment</label>
+    <textarea id="comment-textarea" class="form-control" rows="4" [disabled]="this.request.userId !== this.userId"></textarea>
+  </div>
+</div>

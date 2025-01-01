@@ -50,8 +50,27 @@ export class ViewsComponent implements OnInit {
     );
   }
   viewDetails(requestId: number): void {
-    this.router.navigate([`/staff-member/update-request`, requestId]);
-  }
+    const role = this.authService.getToken()['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+  
+    const roleRoutes: { [key: string]: string } = {
+      "Staff Member": '/staff-member/update-request',
+      "Staff Member Manager": '/staff-member/update-request',
+      "Inventory Manager": '/inventory-manager',
+      "Inventory Manager Manager": '/inventory-manager',
+      "Department Manager": '/department-manager',
+      "Department Manager Manager": '/department-manager',
+    };
+  
+    const route = roleRoutes[role];
+    
+    if (route) {
+      // Ensure that the 'requestId' is passed as part of the route
+      this.router.navigate([route, requestId]);
+    } else {
+      // Optional: Handle the case where role is not matched
+      console.error('Role not found or not authorized to view details');
+    }
+  }  
   changeView(event: Event): void {
     const selectedView = (event.target as HTMLSelectElement).value;
     this.currentView = selectedView;

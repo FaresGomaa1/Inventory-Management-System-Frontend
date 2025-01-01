@@ -7,7 +7,7 @@ export interface GetRequests {
   quantity: number;
   description: string;
   status: boolean;
-  rquestStatus: string;
+  requestStatus: string;
   createdOn: Date;
   category: string;
   categoryId: number;
@@ -36,5 +36,5 @@ export interface AddRequest {
 }
 export interface UpdateRequest extends AddRequest {
   requestId: number;
-  requestStatus: string;
+  requestStatus : string;
 }
