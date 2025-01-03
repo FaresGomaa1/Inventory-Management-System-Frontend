@@ -44,7 +44,7 @@ export interface UpdateRequest extends AddRequest {
 }
 export interface IAssign{
   userId:string;
-  managerId:string;
+  managerId:string | null;
   requestId:number
 }
 export interface IUserRequestInfo {

@@ -1,0 +1,36 @@
+<div class="container supplier-details">
+    <div class="row">
+      <!-- Supplier Header Section -->
+      <div class="col-12 text-center mb-4">
+        <h1 class="supplier-name">{{supplier.firstName}} {{supplier.lastName}}</h1>
+        <p class="supplier-email text-muted">{{supplier.email}}</p>
+      </div>
+  
+      <!-- Supplier Info Section -->
+      <div class="col-lg-6 mb-3">
+        <div class="supplier-info p-4 shadow-sm rounded">
+          <div class="supplier-row">
+            <i class="fas fa-map-marker-alt"></i> <strong>Address:</strong> <span>{{supplier.address}}</span>
+          </div>
+          <div class="supplier-row">
+            <i class="fas fa-phone-alt"></i> <strong>Phone:</strong> <span>{{supplier.phone}}</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Supplier Actions Section -->
+      <div class="col-lg-6 mb-3">
+        <div class="supplier-actions d-flex flex-column align-items-center p-4 shadow-sm rounded">
+          <button class="btn btn-primary mb-3 w-100">
+            <i class="fas fa-envelope"></i> Contact Supplier
+          </button>
+          <button class="btn btn-info w-100">
+            <a routerLink="/views/products" data-toggle="tooltip" title="View Products">
+              <i class="fas fa-shopping-cart"></i> View Products
+            </a>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

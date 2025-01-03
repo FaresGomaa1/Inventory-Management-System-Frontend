@@ -157,7 +157,7 @@ export class RequestService {
       );
   }
   assignRequest(assign:IAssign): Observable<{ message: string }> {
-    if (!assign.userId || !assign.managerId || !assign.requestId) {
+    if (!assign.userId || !assign.requestId) {
       throw new Error('User ID, Manager ID, and Request ID are required');
     }
 
@@ -165,7 +165,6 @@ export class RequestService {
       .patch<{ message: string }>(`${this.apiUrl}/Assign`, assign)
       .pipe(
         catchError((error) => {
-          console.error('Error assigning request:', error);
           return throwError(() => new Error(error.error.message || 'Error assigning request'));
         })
       );

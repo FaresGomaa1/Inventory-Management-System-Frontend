@@ -1,0 +1,44 @@
+<aside class="sidebar" *ngIf="!isTokenExpired">
+  <div class="sidebar-header">
+    <i class="fas fa-user-circle"></i> Welcome, {{ userName }}
+    <p>{{ role }}</p>
+  </div>
+  <nav class="sidebar-nav">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/views/views" routerLinkActive="active">
+          <i class="fas fa-list"></i> All Requests
+        </a>
+      </li>
+      <li
+        class="nav-item"
+        *ngIf="role === 'Staff Member' || role === 'Staff Member Manager'"
+      >
+        <a class="nav-link" routerLink="/views/staff-member" routerLinkActive="active">
+          <i class="fas fa-plus"></i> Create Requests
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/views/products" routerLinkActive="active">
+          <i class="fas fa-box"></i> Products
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/views/suppliers" routerLinkActive="active">
+          <i class="fas fa-truck"></i> Suppliers
+        </a>
+      </li>
+      <li class="nav-item" 
+      *ngIf="role === 'Staff Member' || role === 'Staff Member Manager'">
+        <a class="nav-link" routerLink="/views/create-supplier" routerLinkActive="active">
+          <i class="fas fa-user-plus"></i> Add Supplier
+        </a>
+      </li>      
+    </ul>
+  </nav>
+  <div class="sidebar-footer">
+    <button class="btn btn-outline-light w-100" (click)="signOut()">
+      <i class="fas fa-sign-out-alt"></i> Sign Out
+    </button>
+  </div>
+</aside>

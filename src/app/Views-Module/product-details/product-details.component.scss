@@ -1,0 +1,131 @@
+/* Product Details Page Styles */
+.product-details {
+    padding: 3rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    .product-name {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 1rem;
+      text-transform: capitalize;
+    }
+  
+    .product-price {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #28a745; /* Bootstrap success color */
+      margin-bottom: 1.5rem;
+    }
+  
+    .product-info {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+      .product-row {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+  
+        strong {
+          color: #333;
+          font-weight: bold;
+        }
+  
+        span {
+          color: #555;
+        }
+      }
+    }
+  
+    .product-description {
+      background-color: #fff;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+      h3 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+  
+      p {
+        font-size: 1.1rem;
+        color: #666;
+        line-height: 1.6;
+        text-align: justify;
+      }
+    }
+  
+    .product-link {
+      color: #007bff;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease;
+  
+      &:hover {
+        color: #0056b3;
+        text-decoration: underline;
+      }
+    }
+  
+    .btn {
+      font-size: 1.1rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      transition: background-color 0.3s ease;
+  
+      &.btn-primary {
+        background-color: #007bff;
+        border: none;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+  
+      &.btn-success {
+        background-color: #28a745;
+        border: none;
+  
+        &:hover {
+          background-color: #218838;
+        }
+      }
+  
+      .fa-cart-plus,
+      .fa-arrow-left {
+        margin-right: 8px;
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .product-details {
+      padding: 2rem;
+  
+      .product-name {
+        font-size: 2.2rem;
+      }
+  
+      .product-price {
+        font-size: 1.4rem;
+      }
+  
+      .product-info,
+      .product-description {
+        padding: 1.2rem;
+      }
+  
+      .btn {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+  }
+  

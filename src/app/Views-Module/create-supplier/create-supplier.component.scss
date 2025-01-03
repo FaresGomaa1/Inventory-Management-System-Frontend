@@ -1,0 +1,91 @@
+// Style the container and card
+section.container {
+  max-width: 800px; // Restrict the form width for better readability
+  margin-top: 50px;
+  padding: 15px;
+}
+
+.card {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.card-header {
+  border-radius: 10px 10px 0 0;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.card-body {
+  padding: 30px;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  border: 1px solid #f5c6cb;
+}
+
+// Form input styling
+.form-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.form-control {
+  padding: 12px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+  border-color: #66afe9;
+  outline: none;
+  box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+// Small text for validation messages
+small.text-danger {
+  font-size: 0.875rem;
+  color: #dc3545;
+}
+
+// Buttons
+button[type='submit'], button[type='reset'] {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+}
+
+button[type='submit'] {
+  background-color: #007bff;
+  border: none;
+  color: white;
+}
+
+button[type='reset'] {
+  background-color: #6c757d;
+  border: none;
+  color: white;
+}
+
+button[type='submit']:disabled {
+  background-color: #c6c6c6;
+  cursor: not-allowed;
+}
+
+// Responsive tweaks for smaller screens
+@media (max-width: 768px) {
+  .card-body {
+    padding: 20px;
+  }
+}

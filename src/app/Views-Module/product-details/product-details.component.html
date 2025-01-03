@@ -1,0 +1,52 @@
+<div class="container product-details">
+    <div class="row">
+      <!-- Product Header Section -->
+      <div class="col-12 text-center">
+        <h1 class="product-name">{{product.name}}</h1>
+        <p class="product-price text-success">{{product.price | currency}}</p>
+      </div>
+  
+      <!-- Product Info Section -->
+      <div class="col-lg-6">
+        <div class="product-info">
+          <div class="product-row">
+            <strong>SKU:</strong> <span>{{product.sku}}</span>
+          </div>
+          <div class="product-row">
+            <strong>Quantity:</strong> <span>{{product.quantity}}</span>
+          </div>
+          <div class="product-row">
+            <strong>Supplier:</strong>
+            <a 
+              class="product-link" 
+              [routerLink]="['/views/supplier', product.supplierId]" 
+              data-toggle="tooltip" 
+              title="View Supplier">
+              {{product.supplierFullName}}
+            </a>
+          </div>
+          <div class="product-row">
+            <strong>Created On:</strong> <span>{{product.created_On | date}}</span>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Product Description Section -->
+      <div class="col-lg-6">
+        <div class="product-description">
+          <h3>Description</h3>
+          <p>{{product.description}}</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Action Buttons Section -->
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <button class="btn btn-primary" [routerLink]="['/views/products']">
+          <i class="fas fa-arrow-left"></i> Back to Products
+        </button>
+      </div>
+    </div>
+  </div>
+  

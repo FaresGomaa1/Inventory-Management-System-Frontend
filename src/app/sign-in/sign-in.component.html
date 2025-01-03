@@ -1,7 +1,10 @@
-<div class="login-container">
-  <div class="login-card shadow">
-    <h2 class="text-center mb-4">Welcome Back</h2>
-    <p class="text-center text-muted">Please sign in to your account</p>
+<section class="login-container">
+  <article class="login-card shadow-lg">
+    <header class="text-center mb-4">
+      <h2>Welcome Back</h2>
+      <p class="text-muted">Please sign in to your account</p>
+    </header>
+    
     <form (ngSubmit)="onSignIn()">
       <div class="form-group mb-4">
         <label for="username" class="form-label">
@@ -17,6 +20,7 @@
           required
         />
       </div>
+      
       <div class="form-group mb-4">
         <label for="password" class="form-label">
           <i class="fas fa-lock me-2"></i>Password
@@ -31,9 +35,11 @@
           required
         />
       </div>
+
       <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
         {{ errorMessage }}
       </div>
+
       <button
         type="submit"
         class="btn btn-primary w-100"
@@ -42,13 +48,14 @@
         <i *ngIf="isLoading" class="fas fa-spinner fa-spin me-2"></i> Sign In
       </button>
     </form>
-    <div class="text-center mt-4">
-      <a href="#" class="text-decoration-none text-muted">Forgot Password?</a>
-    </div>
-    <div class="text-center mt-3">
+
+    <footer class="text-center mt-4">
       <p class="text-muted">
-        Don't have an account? <a href="#" class="text-primary">Sign Up</a>
+        New user? <a href="/admin" class="text-primary">Sign Up</a>
       </p>
-    </div>
-  </div>
-</div>
+      <p>
+        <a href="/contact" class="text-primary">Get Help</a>
+      </p>
+    </footer>
+  </article>
+</section>

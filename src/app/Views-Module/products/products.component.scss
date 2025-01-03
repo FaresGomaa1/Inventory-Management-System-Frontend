@@ -1,0 +1,164 @@
+// Styling for the Product Table
+.product-table {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+    overflow: hidden;
+
+    th, td {
+        padding: 1rem;
+        text-align: center;
+    }
+
+    th {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+    }
+
+    td {
+        font-size: 1rem;
+        color: #333;
+        border-top: 1px solid #ddd;
+    }
+
+    // Add Hover Effects on Rows
+    tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+        transform: scale(1.02);
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    tbody tr.active {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    // Custom styles for Price and Quantity columns
+    td:nth-child(3) {
+        font-weight: bold;
+        color: #28a745; // Green for Price
+    }
+
+    td:nth-child(4) {
+        font-weight: bold;
+        color: #ffc107; // Yellow for Quantity
+    }
+
+    td:nth-child(5) {
+        color: #007bff;
+        font-weight: bold;
+        text-transform: capitalize;
+    }
+
+    td:nth-child(6) {
+        color: #6c757d;
+    }
+
+    td:nth-child(7) {
+        color: #007bff;
+    }
+
+    // Adding Border on Columns
+    th, td {
+        border-right: 1px solid #ddd;
+    }
+
+    th:last-child, td:last-child {
+        border-right: none;
+    }
+
+    // Styling the Links
+    .product-link {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+    }
+
+    // Tooltip Styling
+    .tooltip-inner {
+        background-color: #007bff;
+        color: #fff;
+        font-size: 0.9rem;
+    }
+
+    .tooltip-arrow {
+        border-top-color: #007bff;
+    }
+
+    // Responsive Design
+    @media (max-width: 767px) {
+        .product-table {
+            font-size: 0.9rem;
+        }
+
+        .product-table th, .product-table td {
+            padding: 0.75rem;
+        }
+
+        .product-table td {
+            display: block;
+            text-align: left;
+            padding-left: 40%;
+        }
+
+        .product-table td::before {
+            content: attr(data-label);
+            font-weight: bold;
+            color: #007bff;
+        }
+    }
+}
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  
+    .input-group {
+      width: 300px;
+  
+      .form-control {
+        border-radius: 0.25rem;
+      }
+  
+      .btn {
+        border-radius: 0 0.25rem 0.25rem 0;
+        background-color: #007bff;
+        color: #fff;
+  
+        &:hover {
+          background-color: #0056b3;
+        }
+  
+        i {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+  
+  .product-table {
+    th, td {
+      text-align: center;
+      vertical-align: middle;
+    }
+  
+    .product-link {
+      text-decoration: none;
+      color: #007bff;
+  
+      &:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
+    }
+  }
+  

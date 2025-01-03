@@ -1,0 +1,125 @@
+/* Supplier Details Page Styles */
+.supplier-details {
+    padding: 3rem;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  
+    .supplier-name {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 0.5rem;
+      text-transform: capitalize;
+    }
+  
+    .supplier-email {
+      font-size: 1.3rem;
+      color: #777;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+  
+    .supplier-info {
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+      .supplier-row {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+  
+        i {
+          margin-right: 12px;
+          color: #007bff;
+        }
+  
+        strong {
+          color: #333;
+          font-weight: bold;
+        }
+  
+        span {
+          color: #555;
+        }
+      }
+    }
+  
+    .supplier-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
+  
+      .btn {
+        font-size: 1.1rem;
+        padding: 0.9rem 1.6rem;
+        border-radius: 30px;
+        transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+  
+        &:hover {
+          transform: translateY(-2px);
+        }
+  
+        &.btn-primary {
+          background-color: #007bff;
+          border: none;
+          
+          &:hover {
+            background-color: #0056b3;
+          }
+        }
+  
+        &.btn-info {
+          background-color: #17a2b8;
+          border: none;
+          
+          &:hover {
+            background-color: #138496;
+          }
+        }
+  
+        a {
+          color: #fff;
+          text-decoration: none;
+        }
+  
+        .fa-envelope,
+        .fa-shopping-cart {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .supplier-details {
+      padding: 2rem;
+  
+      .supplier-name {
+        font-size: 2rem;
+      }
+  
+      .supplier-email {
+        font-size: 1.1rem;
+      }
+  
+      .supplier-info,
+      .supplier-actions {
+        padding: 1.2rem;
+      }
+  
+      .btn {
+        font-size: 1rem;
+        padding: 0.6rem 1.2rem;
+      }
+    }
+  }
+  

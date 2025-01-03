@@ -51,11 +51,19 @@ export class AuthService {
     const helper = new JwtHelperService(token);
     const isExpired = helper.isTokenExpired(token);
     if(isExpired){
-      throw new Error("You need to sign first");
+     return {} as JwtPayload
     }
     const decodedToken = helper.decodeToken(token);
     return decodedToken;
 
+  }
+  isTokenExpired(): boolean{
+    let token:string =  localStorage.getItem('token') ?? "";
+    if(!token || token === ""){
+      return true;
+    }
+    const helper = new JwtHelperService(token);
+    return helper.isTokenExpired(token);
   }
   getAllManagers(managerTeam:string): Observable<IManager[]> {
     const API: string = `${this.apiUrl}/Managers?managerTeam=${managerTeam}`;

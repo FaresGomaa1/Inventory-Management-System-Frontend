@@ -84,7 +84,7 @@
           id="supplier"
           class="form-select"
           required
-          [disabled]="request.requestType === 'Delete Request'"
+          [disabled]="request.requestType === 'Delete Request'|| request.requestType === 'Update Request'"
           [(ngModel)]="request.supplierId"
           name="supplierId"
         >

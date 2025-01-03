@@ -10,9 +10,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AuthService } from '../services/auth.service';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
-  declarations: [AppComponent,SignInComponent],
+  declarations: [AppComponent,SignInComponent, NotFoundComponent, ContactComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,FormsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

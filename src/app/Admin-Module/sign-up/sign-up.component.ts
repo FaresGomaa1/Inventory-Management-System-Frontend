@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../../classes/User';
 import { IManager } from 'src/interfaces/iuser';
 import { AuthService } from 'src/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -23,7 +24,9 @@ export class SignUpComponent implements OnInit {
   team:string = ""
   role:string = ""
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.userForm = this.fb.group({
@@ -82,7 +85,8 @@ export class SignUpComponent implements OnInit {
 
         this.authService.signUp(newUser).subscribe({
           next: (response) => {
-            
+            this.authService.signOut();
+            this.router.navigateByUrl('/');
           },
           error: (error) => {
             this.errorMessages = [];
