@@ -19,16 +19,17 @@ export class DecisionComponent {
   categories: GetCategoryDTO[] = [];
   supplier: GetSupplierDTO = {} as GetSupplierDTO
   userId:string = "";
-  currentDate: string = ""
+  currentDate: string = "";
+  role:string = "";
   constructor(
     private requestService: RequestService,
     private route: ActivatedRoute,
-    private router: Router,
     private categoryService: CategoryService,
     private supplierService: SupplierService,
     private authService: AuthService
   ) {
     this.userId = this.authService.getToken()['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'];
+    this.role = this.authService.getToken()['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
     this.fetchRequest()
   }
   fetchRequest(): void {
@@ -73,4 +74,58 @@ export class DecisionComponent {
     const category = this.categories.find(c => c.id === this.request.categoryId);
     return category ? category.name : 'Category not found'; // Return a default message if not found
   }  
+  submit(): void {
+    let role:string= this.authService.getToken()['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']
+    let roleSubString: string[] = role.split(" ");
+    this.managerDecision(`${roleSubString[0]}${roleSubString[1]}`)
+  }
+  managerDecision(managerType:string){
+    if(managerType === "InventoryManager"){
+      if (!this.request.inventoryManagerDecision) { 
+        alert('Please select a decision.');
+        return;
+      }
+  
+      const managerDecision = {
+        managerId: this.userId,
+        requestId: this.request.id,
+        decision: this.request.inventoryManagerDecision,
+        comment: this.request.inventoryManagerComment,
+        managerType: managerType
+      };
+      this.requestService.updateManagerDecision(managerDecision).subscribe({
+        next: (response) => {
+          alert('Decision submitted successfully.');
+          window.location.reload();
+        },
+        error: (error) => {
+          alert('Failed to submit decision.');
+          console.error('Error:', error);
+        },
+      });
+    }else if (managerType === "DepartmentManager"){
+      if (!this.request.departmentManagerDecision) { 
+        alert('Please select a decision.');
+        return;
+      }
+  
+      const managerDecision = {
+        managerId: this.userId,
+        requestId: this.request.id,
+        decision: this.request.departmentManagerDecision,
+        comment: this.request.departmentManagerComment,
+        managerType: managerType
+      };
+      this.requestService.updateManagerDecision(managerDecision).subscribe({
+        next: (response) => {
+          alert('Decision submitted successfully.');
+          window.location.reload();
+        },
+        error: (error) => {
+          alert('Failed to submit decision.');
+          console.error('Error:', error);
+        },
+      });
+    }
+  }
 }

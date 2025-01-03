@@ -10,6 +10,10 @@ export interface GetRequests {
   requestStatus: string;
   createdOn: Date;
   category: string;
+  inventoryManagerComment:string;
+  inventoryManagerDecision: string;
+  departmentManagerComment:string;
+  departmentManagerDecision:string;
   categoryId: number;
   supplier: string;
   supplierId: number;
@@ -19,7 +23,7 @@ export interface GetRequests {
   teamId: number;
 }
 export interface GetRequestsResponse {
-  data: GetRequests[];
+  data: {result:GetRequests[]};
   message: string;
   timestamp: Date;
 }
@@ -37,4 +41,17 @@ export interface AddRequest {
 export interface UpdateRequest extends AddRequest {
   requestId: number;
   requestStatus : string;
+}
+export interface IAssign{
+  userId:string;
+  managerId:string;
+  requestId:number
+}
+export interface IUserRequestInfo {
+  userId:string;
+  email:string;
+  phoneNumber:string;
+  firstName:string;
+  lastName:string;
+  activeRequestCount:string;
 }

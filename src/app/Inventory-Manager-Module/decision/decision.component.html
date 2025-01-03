@@ -3,7 +3,7 @@
   
   <div class="request-info mb-4 p-3 bg-light rounded">
     <p><strong>Request Status:</strong> {{ this.request.requestStatus }}</p>
-    <p><strong>Owner:</strong> {{ this.request.user }} | <strong>Team:</strong> {{this.request.team}} Team</p>
+    <p><strong>Owner:</strong> {{ request.user ? request.user : "No assigned User" }}   | <strong>Team:</strong> {{this.request.team}} Team</p>
     <span class="badge" [ngClass]="this.request.status ? 'badge-success' : 'badge-danger'">
       {{ this.request.status ? 'Active' : 'Inactive' }}
     </span>
@@ -11,6 +11,7 @@
   
   <div class="product-info mb-4 p-3 bg-light rounded">
     <h4><i class="fas fa-box me-2"></i>Product Details</h4>
+    <p><strong>Request Type:</strong> {{ this.request.requestType }}</p>
     <p><strong>Name:</strong> {{ this.request.name }}</p>
     <p><strong>Price:</strong> {{ this.request.price | currency }}</p>
     <p><strong>Category:</strong> {{ category() }}</p>
@@ -36,14 +37,63 @@
   
   <div class="decision-section p-3 bg-light rounded">
     <h4><i class="fas fa-gavel me-2"></i>Decision</h4>
+  
+    <!-- Decision Dropdown -->
     <label for="decision-select" class="form-label">Decision</label>
-    <select id="decision-select" class="form-select mb-3" [disabled]="this.request.userId !== this.userId">
-      <option value="">Approve</option>
-      <option value="">Reject with Update</option>
-      <option value="">Reject and Close</option>
-    </select>
-    
-    <label for="comment-textarea" class="form-label">Comment</label>
-    <textarea id="comment-textarea" class="form-control" rows="4" [disabled]="this.request.userId !== this.userId"></textarea>
+<div *ngIf="role === 'Inventory Manager' || role === 'Inventory Manager Manager'">
+  <select 
+  [(ngModel)]="request.inventoryManagerDecision" 
+  id="decision-select" 
+  class="form-select mb-3" 
+  [disabled]="request.userId !== userId || request.status == false"
+>
+  <option value="Approve">Approve</option>
+  <option value="Reject - Update">Reject with Update</option>
+  <option value="Reject - Close">Reject and Close</option>
+</select>  
+
+  <!-- Comment Textarea -->
+  <label for="comment-textarea" class="form-label">Comment</label>
+  <textarea 
+    [(ngModel)]="request.inventoryManagerComment" 
+    id="comment-textarea" 
+    class="form-control" 
+    rows="4" 
+    [disabled]="request.userId !== userId || request.status == false"
+  ></textarea>
+</div>
+<div *ngIf="role === 'Department Manager' || role === 'Department Manager Manager'">
+  <select 
+  [(ngModel)]="request.departmentManagerDecision" 
+  id="decision-select1" 
+  class="form-select mb-3" 
+  [disabled]="request.userId !== userId || request.status == false"
+>
+  <option value="Approve">Approve</option>
+  <option value="Reject - Update">Reject with Update</option>
+  <option value="Reject - Close">Reject and Close</option>
+</select>  
+
+  <!-- Comment Textarea -->
+  <label for="comment-textarea" class="form-label">Comment</label>
+  <textarea 
+    [(ngModel)]="request.departmentManagerComment" 
+    id="comment-textarea1" 
+    class="form-control" 
+    rows="4" 
+    [disabled]="request.userId !== userId || request.status == false"
+  ></textarea>
+</div>
+  
+    <!-- Submit Button -->
+    <button 
+      type="button" 
+      class="btn btn-primary mt-3" 
+      *ngIf="request.userId === userId && request.status === true"
+      (click)="submit()"
+    >
+      Submit
+    </button>
   </div>
+  
 </div>

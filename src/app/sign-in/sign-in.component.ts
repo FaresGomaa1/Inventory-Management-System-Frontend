@@ -27,10 +27,12 @@ export class SignInComponent {
       this.isLoading = true;
     }
     if(emailRegex.test(this.username)){
+      
       this.email = this.username
-      this.username = '';
-      this.password = '';
+      // this.username = '';
+      // this.password = '';
     }
+    console.log("Hereeeee",this.username,this.password)
     this.authService
     .signIn(this.email, this.username, this.password)
     .subscribe({

@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'views',
     loadChildren: () => import('./Views-Module/views.module').then((m) => m.ViewsModule),
-    canActivate: [CheckIfHasRole],
+    //canActivate: [CheckIfHasRole],
   },
   {
     path: 'admin',
@@ -34,15 +34,7 @@ const routes: Routes = [
         (m) => m.InventoryManagerModule
       ),
     //canActivate: [AuthGuard],
-  },
-  {
-    path: 'department-manager',
-    loadChildren: () =>
-      import('./Department-Manager-Module/department-manager.module').then(
-        (m) => m.DepartmentManagerModule
-      ),
-    canActivate: [AuthGuard],
-  },
+  }
 ];
 
 @NgModule({

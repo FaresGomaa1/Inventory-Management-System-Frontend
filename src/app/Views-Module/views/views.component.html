@@ -1,6 +1,6 @@
 <div class="container mt-4">
   <h2 class="text-center mb-4">Request List</h2>
-
+<p>your <strong>role</strong> is <strong>{{role}}</strong></p>
   <!-- Dropdown to change view -->
   <div class="mb-3 select-wrapper">
     <label for="viewSelect" class="form-label">Select View</label>
@@ -49,9 +49,67 @@
           <td>{{ request.supplier }}</td>
           <td>{{ request.user }}</td>
           <td>{{ request.team }} Team</td>
-          <td (click)="assignRecord()"><button>Assign</button></td>
+          <td ><button  (click)="getTeamMembers(request.id)"
+            *ngIf="checkAssignPrivilege(request)"
+            type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fullScreenModal"
+            >Assign</button></td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="fullScreenModal"
+  tabindex="-1"
+  aria-labelledby="fullScreenModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-fullscreen-sm-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fullScreenModalLabel">Team Members</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Add a responsive table container -->
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead class="table-light">
+              <tr>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Active Requests Assigned</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of teamRequests">
+                <td>{{user.firstName}} {{user.lastName}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.phoneNumber}}</td>
+                <td>{{user.activeRequestCount}}</td>
+                <td><button (click)="assignRecord(user.userId)">Assign</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

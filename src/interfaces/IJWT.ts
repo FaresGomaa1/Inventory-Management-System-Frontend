@@ -6,5 +6,7 @@ export interface JwtPayload {
     iss: string;
     jti: string;
     sub: string;
+    managerId:string;
+    teamId:string
   }
   
